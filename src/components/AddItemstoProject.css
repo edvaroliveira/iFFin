@@ -1,0 +1,96 @@
+/* /frontend/src/components/AddItemsToProject.css */
+
+.add-items-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.add-items-form h2 {
+  margin-bottom: 20px;
+  color: #084F01;
+  text-align: center;
+}
+
+.add-items-form .form-group {
+  margin-bottom: 15px;
+}
+
+.add-items-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.add-items-form .form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-items-form .item-group {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.add-items-form .item-group h4 {
+  margin-bottom: 10px;
+}
+
+.add-items-form .btn {
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.add-items-form .add-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-items-form .remove-btn {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  margin-top: 10px;
+}
+
+.add-items-form .submit-btn {
+  background-color: #084F01;
+  border: none;
+  color: white;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .add-items-form {
+    padding: 15px;
+  }
+
+  .add-items-form h2 {
+    font-size: 1.5em;
+  }
+
+  .add-items-form .form-group label,
+  .add-items-form .form-control {
+    font-size: 0.9em;
+  }
+
+  .add-items-form .btn {
+    padding: 8px 10px;
+  }
+}

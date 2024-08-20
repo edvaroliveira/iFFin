@@ -1,0 +1,104 @@
+/* /frontend/src/index.css */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9; /* Fundo suave e neutro */
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+}
+
+/* Layout flexível */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header, nav, main, footer {
+  margin-bottom: 20px;
+}
+
+/* Link padrão */
+a {
+  color: #084F01; /* Usando a cor base */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botão padrão */
+button {
+  background-color: #084F01; /* Cor base */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #066501; /* Um tom mais escuro para o hover */
+}
+
+/* Estilos de formulário */
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de cabeçalho */
+header {
+  background-color: #084F01; /* Cor base */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Estilos de navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav ul li {
+  padding: 10px 0;
+}
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}

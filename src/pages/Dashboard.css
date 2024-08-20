@@ -1,0 +1,71 @@
+/* /frontend/src/pages/Dashboard.css */
+
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard h1 {
+  margin-bottom: 20px;
+  color: #084F01;
+  text-align: center;
+}
+
+.project {
+  margin-bottom: 40px;
+}
+
+.project h2 {
+  color: #084F01;
+  margin-bottom: 10px;
+}
+
+.project p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #084F01;
+  color: white;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 8px 10px;
+  }
+
+  .project h2 {
+    font-size: 1.5em;
+  }
+
+  .project p {
+    font-size: 1em;
+  }
+}
