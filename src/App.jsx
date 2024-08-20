@@ -10,23 +10,12 @@ import Reports from "./pages/Reports";
 import PrivateRoute from "./components/PrivateRoute";
 import ProjectForms from "./components/ProjectForms";
 import AddItemstoProject from "./components/AddItemstoProject";
+import UserForm from "./components/UserForm";
 
 function App() {
   return (
     <Router>
       <DropdownMenu /> {/* Adiciona o menu suspenso em todas as páginas */}
-      {/* <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/new" element={<ProjectForms />} />
-          <Route path="/items/*" element={<Items />} />
-          <Route path="/items/new" element={<AddItemstoProject />} />
-          <Route path="/reports" element={<Reports />} />
-        </Route>
-        <Route path="*" element={<h1>404 - Not Found</h1>} />
-      </Routes> */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route
@@ -74,6 +63,14 @@ function App() {
           element={
             <PrivateRoute allowedRoles={["admin"]}>
               <AddItemstoProject />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/users/new"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <UserForm />
             </PrivateRoute>
           }
         />

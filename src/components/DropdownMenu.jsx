@@ -41,6 +41,9 @@ const DropdownMenu = () => {
                 <NavDropdown.Item as={Link} to="/items/new">
                   Itens de Projetos
                 </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/users/new">
+                  Usuários
+                </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Alteração" id="basic-nav-dropdown">
