@@ -1,14 +1,18 @@
 // /frontend/src/components/AddItemsToProject.jsx
 
 import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"; // Importa o estilo do DatePicker
 import projectService from "../services/projectService";
-import itemService from "../services/ItemService";
+import itemService from "../services/itemService"; // Certifique-se de que o nome do serviço está correto
 import "./AddItemsToProject.css";
 
 const AddItemsToProject = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState("");
-  const [items, setItems] = useState([{ name: "", category: "", cost: "" }]);
+  const [items, setItems] = useState([
+    { name: "", category: "", cost: "", creationDate: null },
+  ]);
   const [message, setMessage] = useState("");
 
   const categories = [
@@ -28,12 +32,22 @@ const AddItemsToProject = () => {
   }, []);
 
   const handleAddItem = () => {
-    setItems([...items, { name: "", category: "", cost: "" }]);
+    setItems([
+      ...items,
+      { name: "", category: "", cost: "", creationDate: null },
+    ]);
   };
 
   const handleChange = (index, e) => {
     const updatedItems = items.map((item, i) =>
       i === index ? { ...item, [e.target.name]: e.target.value } : item
+    );
+    setItems(updatedItems);
+  };
+
+  const handleDateChange = (index, date) => {
+    const updatedItems = items.map((item, i) =>
+      i === index ? { ...item, creationDate: date } : item
     );
     setItems(updatedItems);
   };
@@ -49,11 +63,18 @@ const AddItemsToProject = () => {
       return;
     }
 
+    const formattedItems = items.map((item) => ({
+      ...item,
+      creation_date: item.creationDate
+        ? item.creationDate.toISOString().split("T")[0]
+        : null,
+    }));
+
     itemService
-      .addItemsToProject(selectedProject, items)
+      .addItemsToProject(selectedProject, formattedItems)
       .then((response) => {
         setMessage("Itens adicionados com sucesso!");
-        setItems([{ name: "", category: "", cost: "" }]);
+        setItems([{ name: "", category: "", cost: "", creationDate: null }]);
       })
       .catch((error) => {
         console.error("Erro ao adicionar itens:", error);
@@ -127,6 +148,18 @@ const AddItemsToProject = () => {
                 onChange={(e) => handleChange(index, e)}
                 required
                 className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor={`creationDate-${index}`}>Data de Criação:</label>
+              <DatePicker
+                selected={item.creationDate}
+                onChange={(date) => handleDateChange(index, date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Selecione a data"
+                className="form-control"
+                id={`creationDate-${index}`}
+                required
               />
             </div>
             <button
