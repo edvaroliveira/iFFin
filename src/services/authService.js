@@ -7,17 +7,6 @@ const register = (username, password, role) => {
   return axios.post(API_URL + "register", { username, password, role });
 };
 
-// const login = async (username, password) => {
-//   return axios
-//     .post(API_URL + "login", { username, password })
-//     .then((response) => {
-//       if (response.data.accessToken) {
-//         localStorage.setItem("user", JSON.stringify(response.data));
-//       }
-//       return response.data;
-//     });
-// };
-
 const login = (username, password) => {
   return axios
     .post(API_URL + "login", { username, password })
@@ -37,6 +26,7 @@ const login = (username, password) => {
 
 const logout = () => {
   localStorage.removeItem("user");
+  // Navigate("/login");
 };
 
 const getCurrentUser = () => {

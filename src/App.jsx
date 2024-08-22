@@ -1,16 +1,20 @@
 // /frontend/src/App.jsx
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import DropdownMenu from "./components/DropdownMenu";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
-import Items from "./pages/Items";
-import Reports from "./pages/Reports";
 import PrivateRoute from "./components/PrivateRoute";
 import ProjectForms from "./components/ProjectForms";
 import AddItemstoProject from "./components/AddItemstoProject";
 import UserForm from "./components/UserForm";
+import ProjectReport from "./components/ProjectReport";
 
 function App() {
   return (
@@ -34,14 +38,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/reports"
-          element={
-            <PrivateRoute allowedRoles={["admin", "user"]}>
-              <Reports />
-            </PrivateRoute>
-          }
-        />
+
         <Route
           path="/projects"
           element={
@@ -74,6 +71,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute allowedRoles={["admin", "user"]}>
+              <ProjectReport />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

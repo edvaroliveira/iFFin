@@ -21,6 +21,24 @@ const addItemsToProject = (projectId, items) => {
     });
 };
 
+const getItemsByProject = (projectId) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user?.token}`,
+    },
+  };
+
+  return axios
+    .get(`${API_URL}by-project/${projectId}`, config)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Erro ao buscar itens do projeto:", error);
+      throw error;
+    });
+};
+
 export default {
   addItemsToProject,
+  getItemsByProject,
 };

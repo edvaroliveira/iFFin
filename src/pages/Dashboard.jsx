@@ -63,7 +63,7 @@ const Dashboard = () => {
                   {Object.keys(totalCostByCategory).map((category) => (
                     <tr key={category}>
                       <td>{category}</td>
-                      <td>R${totalCostByCategory[category].toFixed(2)}</td>
+                      <td>R$ {totalCostByCategory[category].toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>

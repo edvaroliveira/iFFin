@@ -58,8 +58,26 @@ const getAllProjects = () => {
     });
 };
 
+const getProjectsByUser = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const config = {
+    headers: {
+      Authorization: `Bearer ${user?.token}`,
+    },
+  };
+
+  return axios
+    .get(API_URL + "by-user", config)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Erro ao buscar projetos:", error);
+      throw error;
+    });
+};
+
 export default {
   getAllWithItems,
   createProject,
   getAllProjects,
+  getProjectsByUser,
 };

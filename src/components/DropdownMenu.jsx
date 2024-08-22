@@ -1,17 +1,17 @@
 // /frontend/src/components/DropdownMenu.jsx
 
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import authService from "../services/authService";
 
 const DropdownMenu = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Remover o token ou limpar a sessão do usuário
-    localStorage.removeItem("user"); // Remove os dados do usuário do localStorage
-    navigate("/login"); // Redireciona para a página de login
+    authService.logout();
+    navigate("/login");
   };
 
   // Condiciona a exibição do menu ao não estar na página de login
