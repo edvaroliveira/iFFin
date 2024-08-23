@@ -1,17 +1,11 @@
 // /frontend/src/services/itemService.js
 
 import axios from "axios";
+import config from "../config/userConfig";
 
 const API_URL = "http://localhost:5001/items/";
 
 const addItemsToProject = (projectId, items) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`,
-    },
-  };
-
   return axios
     .post(`${API_URL}${projectId}/add-items`, { items }, config)
     .then((response) => response.data)
@@ -22,12 +16,12 @@ const addItemsToProject = (projectId, items) => {
 };
 
 const getItemsByProject = (projectId) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`,
-    },
-  };
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${user?.token}`,
+  //   },
+  // };
 
   return axios
     .get(`${API_URL}by-project/${projectId}`, config)

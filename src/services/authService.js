@@ -26,7 +26,6 @@ const login = (username, password) => {
 
 const logout = () => {
   localStorage.removeItem("user");
-  // Navigate("/login");
 };
 
 const getCurrentUser = () => {

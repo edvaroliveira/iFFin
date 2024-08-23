@@ -1,21 +1,15 @@
 // /frontend/src/services/projectService.js
 
 import axios from "axios";
+import config from "../config/userConfig";
 
 const API_URL = "http://localhost:5001/projects/";
 
 const getAllWithItems = (role) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log("Token:", user?.token);
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`, // Certifique-se de que o token está sendo passado corretamente
-    },
-    params: { role }, // Envia o papel do usuário como um parâmetro
-  };
+  const conf = { ...config, params: { role } };
 
   return axios
-    .get(API_URL + "with-items", config)
+    .get(API_URL + "with-items", conf)
     .then((response) => response.data)
     .catch((error) => {
       console.error("Erro ao buscar projetos com itens:", error);
@@ -24,14 +18,6 @@ const getAllWithItems = (role) => {
 };
 
 const createProject = (projectData) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`, // Envia o token JWT no cabeçalho
-    },
-  };
-
   return axios
     .post(API_URL, projectData, config)
     .then((response) => response.data)
@@ -42,13 +28,6 @@ const createProject = (projectData) => {
 };
 
 const getAllProjects = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`,
-    },
-  };
-
   return axios
     .get(API_URL, config)
     .then((response) => response.data)
@@ -59,13 +38,6 @@ const getAllProjects = () => {
 };
 
 const getProjectsByUser = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user?.token}`,
-    },
-  };
-
   return axios
     .get(API_URL + "by-user", config)
     .then((response) => response.data)
