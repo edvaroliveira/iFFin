@@ -1,8 +1,8 @@
-const user = JSON.parse(localStorage.getItem("user"));
-const config = {
-  headers: {
-    Authorization: `Bearer ${user?.token}`,
-  },
+export const getConfig = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return {
+    headers: {
+      Authorization: `Bearer ${user?.token}`,
+    },
+  };
 };
-
-export default config;

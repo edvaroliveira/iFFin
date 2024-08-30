@@ -1,25 +1,32 @@
 // /frontend/src/services/projectService.js
 
 import axios from "axios";
-import config from "../config/userConfig";
+import { getConfig } from "../config/userConfig";
 
 const API_URL = "http://localhost:5001/projects/";
 
 const getAllWithItems = (role) => {
-  const conf = { ...config, params: { role } };
-
+  const conf = { ...getConfig(), params: { role } };
+  console.log("Dentro do getall... --->", conf);
   return axios
     .get(API_URL + "with-items", conf)
     .then((response) => response.data)
     .catch((error) => {
-      console.error("Erro ao buscar projetos com itens:", error);
+      if (error.response && error.response.status === 403) {
+        // Verifica se o erro é relacionado ao token expirado
+        alert("Sessão expirada. Faça login novamente.");
+        localStorage.removeItem("user"); // Remove o token expirado
+        window.location.href = "/login"; // Redireciona para a página de login
+      } else {
+        console.error("Erro ao buscar projetos com itens:", error);
+      }
       throw error;
     });
 };
 
 const createProject = (projectData) => {
   return axios
-    .post(API_URL, projectData, config)
+    .post(API_URL, projectData, getConfig())
     .then((response) => response.data)
     .catch((error) => {
       console.error("Erro ao criar projeto:", error);
@@ -29,7 +36,7 @@ const createProject = (projectData) => {
 
 const getAllProjects = () => {
   return axios
-    .get(API_URL, config)
+    .get(API_URL, getConfig())
     .then((response) => response.data)
     .catch((error) => {
       console.error("Erro ao buscar projetos:", error);
@@ -39,7 +46,7 @@ const getAllProjects = () => {
 
 const getProjectsByUser = () => {
   return axios
-    .get(API_URL + "by-user", config)
+    .get(API_URL + "by-user", getConfig())
     .then((response) => response.data)
     .catch((error) => {
       console.error("Erro ao buscar projetos:", error);
