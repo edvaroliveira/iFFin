@@ -8,6 +8,7 @@ import "./ProjectForms.css";
 const ProjectForms = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [budget, setBudget] = useState("");
   const [userId, setUserId] = useState("");
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -35,8 +36,10 @@ const ProjectForms = () => {
       .createProject({ name, description, user_id: userId })
       .then((response) => {
         setMessage("Projeto criado com sucesso!");
+        console.log(userId);
         setName("");
         setDescription("");
+        setBudget("");
       })
       .catch((error) => {
         console.error("Erro ao criar projeto:", error);
@@ -68,6 +71,17 @@ const ProjectForms = () => {
             onChange={(e) => setDescription(e.target.value)}
             className="form-control"
           ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="budget">Orçamento (Budget):</label>
+          <input
+            type="number"
+            id="budget"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            required
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="user">Selecionar Usuário:</label>

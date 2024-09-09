@@ -7,7 +7,7 @@ const API_URL = "http://localhost:5001/projects/";
 
 const getAllWithItems = (role) => {
   const conf = { ...getConfig(), params: { role } };
-  console.log("Dentro do getall... --->", conf);
+  console.log("Dentro do getAllWithItems... --->", conf);
   return axios
     .get(API_URL + "with-items", conf)
     .then((response) => response.data)
